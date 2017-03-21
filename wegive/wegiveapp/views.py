@@ -19,18 +19,19 @@ def match_charity(name="", tags="", near_x=0.0, near_y=0.0, near_distance=0.0):
     Returns:
     The resulting query set.
     """
-    charities = models.Charity.objects()
     # construct kwargs
     kwargs = {}
     if name != "":
         kwargs["name__contains"] = name
     if tags != "":                               # NOT IMPLEMENTED
         pass
-    if near_x != 0 and near_y != 0 and near_distance != 0:
-        min_y = near_y - near_distance
-        max_y = near_y + near_distance
-        min_x = near_x - near_distance
-        max_x = near_x + near_distance
+    # parentheses here for implicit line completion
+    if (near_x != 0 and near_y != 0 and near_distance != 0 and
+        near_x != "" and near_y != "" and near_distance != ""):
+        max_y = float(near_y) + float(near_distance)
+        min_x = float(near_x) - float(near_distance)
+        min_y = float(near_y) - float(near_distance)
+        max_x = float(near_x) + float(near_distance)
 
         kwargs["location_x__gte"] = min_x
         kwargs["location_x__lte"] = max_x
@@ -38,7 +39,7 @@ def match_charity(name="", tags="", near_x=0.0, near_y=0.0, near_distance=0.0):
         kwargs["location_y__lte"] = max_y
 
     # get query set
-    results_qset = charities.get(**kwargs)
+    results_qset = models.Charity.objects.filter(**kwargs)
 
     return results_qset
 
@@ -52,12 +53,12 @@ def search(request):
     if request.method == "POST":
         # TODO: near me test
         res = match_charity(
-            name=request.POST[name], near_x=request.POST[location_x],
-            near_y=request.POST[location_y], near_distance=request.POST[radius])
-        return render(request, "templates/html/search-results.html", {"res": res})
+            name=request.POST["name"], near_x=request.POST["location_x"],
+            near_y=request.POST["location_y"], near_distance=request.POST["radius"])
+        return render(request, "html/search-results.html", {"res": res})
     else:
         form = forms.SearchForm()
-        return render(request, "templates/html/search.html", {"form": form})
+        return render(request, "html/search.html", {"form": form})
 
 def select(request):
     pass

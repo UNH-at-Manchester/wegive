@@ -1,0 +1,26 @@
+{% extends "html/base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Address</td>
+                <td>Phone</td>
+                <td>Cause</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for charity in res %}
+                <tr>
+                    <td><a href="/select?id={{charity.id}}">{{charity.name}}</a></td>
+                    <td>{{charity.address}}</td>
+                    <td>{{charity.phone}}</td>
+                    <td>{{charity.cause}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
