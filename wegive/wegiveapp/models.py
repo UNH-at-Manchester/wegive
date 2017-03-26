@@ -8,6 +8,7 @@ class Charity(models.Model):
     location_y = models.FloatField(null=False, default=1000.0)
     phone = models.TextField(null=False, default="")
     cause = models.TextField(null=False, default="")
+    tags_csv = models.TextField(null=False, default="")
 
     def __str__(self):
         return self.name
@@ -18,6 +19,7 @@ class Donor(models.Model):
     address = models.TextField(null=False)
     phone = models.TextField(null=False)
     date_of_birth = models.TextField(null=False)
+    tags_csv = models.TextField(null=False, default="")
 
 
     def __str__(self):
