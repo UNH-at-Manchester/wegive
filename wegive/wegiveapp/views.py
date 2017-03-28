@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from . import models
 from . import forms
-
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+from django.http import HttpResponse
 # Create your views here.
 
 def match_charity(name="", tags="", near_x=0.0, near_y=0.0, near_distance=0.0):
@@ -65,3 +67,33 @@ def select(request):
 
 def pay(request):
     pass
+
+def loginat(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    user = authenticate(username=username, password=password)
+    if user is not None:
+        login(request, user)
+        #return render(request,...)
+        return HttpResponse(status=200)
+    else:
+        form = forms.LoginForm()
+        return render(request, "html/loginat.html", {"form": form})
+
+def logoutat(request):
+    logout(request)
+    form = forms.LoginForm()
+    return render(request, "html/loginat.html", {"form": form}) 
+
+# def sign_up(request):
+#     if request.method == "POST":
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         name = request.POST.get('name')
+#         email = request.POST.get('email')
+#         phone = request.POST.get('phone')
+#         address = request.POST.get("address")
+#         user = User.objects.create_user(usename=usename, password=password)
+#     else:
+        # Needs to add stuff here. 
+        

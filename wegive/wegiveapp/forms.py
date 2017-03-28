@@ -9,3 +9,6 @@ class SearchForm(forms.Form):
     location_y = forms.FloatField(label="Location(y)", required=False)
     radius = forms.FloatField(label="Radius", required=False)
 
+class LoginForm(forms.Form):
+	username = forms.CharField(label="Username", max_length=2000)
+	password = forms.CharField(label="Password", max_length=2000)
