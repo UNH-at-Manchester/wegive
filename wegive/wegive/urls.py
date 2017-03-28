@@ -20,4 +20,7 @@ from wegiveapp import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r"^search/", views.search),
+    url(r"^loginat/", views.loginat),
+    url(r"^logoutat/", views.logoutat),
+    #url(r"^sign_up/", views.sign_up),
 ]

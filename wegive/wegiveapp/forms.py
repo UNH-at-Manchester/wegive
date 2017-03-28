@@ -13,3 +13,6 @@ class SearchForm(forms.Form):
                                      widget=forms.CheckboxSelectMultiple,
                                      choices=[(i, i) for i in tags.tags])
 
+class LoginForm(forms.Form):
+	username = forms.CharField(label="Username", max_length=2000)
+	password = forms.CharField(label="Password", max_length=2000)
