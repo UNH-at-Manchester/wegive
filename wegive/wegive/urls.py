@@ -22,5 +22,5 @@ urlpatterns = [
     url(r"^search/", views.search),
     url(r"^loginat/", views.loginat),
     url(r"^logoutat/", views.logoutat),
-    #url(r"^sign_up/", views.sign_up),
+    url(r"^sign_up/", views.sign_up),
 ]

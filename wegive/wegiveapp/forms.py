@@ -12,3 +12,11 @@ class SearchForm(forms.Form):
 class LoginForm(forms.Form):
 	username = forms.CharField(label="Username", max_length=2000)
 	password = forms.CharField(label="Password", max_length=2000)
+class SignUpForm(forms.Form):
+	First_name = forms.CharField(label="Name", max_length=2000)
+	username = forms.CharField(label="Username", max_length=2000)
+	password = forms.CharField(label="Password", max_length=2000)
+	phone = forms.CharField(label="Phone", max_length=2000)
+	address = forms.CharField(label="Address", max_length=2000)
+	email = forms.CharField(label="Email", max_length=2000)
+	donor_or_Charity = forms.CharField(label="Charity/Donor", max_length=2000)

@@ -85,15 +85,19 @@ def logoutat(request):
     form = forms.LoginForm()
     return render(request, "html/loginat.html", {"form": form}) 
 
-# def sign_up(request):
-#     if request.method == "POST":
-#         username = request.POST.get('username')
-#         password = request.POST.get('password')
-#         name = request.POST.get('name')
-#         email = request.POST.get('email')
-#         phone = request.POST.get('phone')
-#         address = request.POST.get("address")
-#         user = User.objects.create_user(usename=usename, password=password)
-#     else:
-        # Needs to add stuff here. 
-        
+def sign_up(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        address = request.POST.get("address")
+        user = User.objects.create_user(usename=usename, password=password)
+    else:
+        form = forms.SignUpForm()
+        return render(request, "html/signup.html",{"form": form} )
+
+
+
+#render the template that has the sign up form        
