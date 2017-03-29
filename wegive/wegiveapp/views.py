@@ -101,3 +101,13 @@ def logoutat(request):
 #     else:
         # Needs to add stuff here. 
         
+
+@login_required
+def view_records(request):
+    """
+    View financial records for the current user.
+    Requires authentication.
+    No Parameters
+    """
+    pass
+
