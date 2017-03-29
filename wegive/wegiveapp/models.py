@@ -21,7 +21,7 @@ class Donor(models.Model):
     name =  models.CharField(max_length=2000, null=False, blank=False)
     address = models.TextField(null=False)
     phone = models.TextField(null=False)
-    date_of_birth = models.TextField(null=False)
+    date_of_birth = models.DateField(null=False)
     tags_csv = models.TextField(null=False, default="", blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=False,
                                 blank=False)
@@ -41,8 +41,8 @@ class Donation(models.Model):
                     float, so we don't have to worry about precision.
     DateTime time: The date and time at which the donation took place.
     """
-    donor = models.OneToOneField(Donor, on_delete=models.CASCADE)
-    charity = models.OneToOneField(Charity, on_delete=models.CASCADE)
+    donor = models.ForeignKey(Donor, on_delete=models.CASCADE)
+    charity = models.ForeignKey(Charity, on_delete=models.CASCADE)
     amount = models.DecimalField(max_digits=16, decimal_places=3, null=False,
                                  blank=False)
     time = models.DateTimeField(auto_now_add=True, null=False, blank=False)

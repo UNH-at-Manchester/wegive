@@ -23,4 +23,5 @@ urlpatterns = [
     url(r"^loginat/", views.loginat),
     url(r"^logoutat/", views.logoutat),
     url(r"^sign_up/", views.sign_up),
+    url(r"^record/", views.view_records),
 ]

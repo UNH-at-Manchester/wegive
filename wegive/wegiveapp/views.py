@@ -4,6 +4,7 @@ from . import forms
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def match_charity(name="", tags=[], location_x=0.0, location_y=0.0, radius=0.0):
@@ -111,4 +112,22 @@ def view_records(request):
     Requires authentication.
     No Parameters
     """
-    pass
+    donors = models.Donor.objects.filter(user=request.user.id)
+    charities = models.Charity.objects.filter(user=request.user.id)
+    records = []
+
+    print(request.user.id)
+    print(donors)
+    print(charities)
+
+    for donor in donors:
+        donor_records = models.Donation.objects.filter(donor=donor)
+        for record in donor_records:
+            records.append({"type": "donor", "data": record})
+
+    for charity in charities:
+        charity_records = models.Donation.objects.filter(charity=charity)
+        for record in charity_records:
+            records.append({"type": "charity", "data": record})
+
+    return render(request, "html/records.html", {"res": records})
