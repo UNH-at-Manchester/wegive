@@ -24,4 +24,5 @@ urlpatterns = [
     url(r"^logoutat/", views.logoutat),
     url(r"^sign_up/", views.sign_up),
     url(r"^record/", views.view_records),
+    url(r"^select/(?P<id>\d+)/$", views.select),
 ]

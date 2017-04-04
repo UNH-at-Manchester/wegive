@@ -1,4 +1,6 @@
+from __future__ import unicode_literals
 from django.db import models
+from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -14,8 +16,7 @@ class Charity(models.Model):
                                 blank=False)
 
     def __str__(self):
-        return "{} ({})".format(self.user, self.name)
-
+        return self.name
 
 class Donor(models.Model):
     name =  models.CharField(max_length=2000, null=False, blank=False)
