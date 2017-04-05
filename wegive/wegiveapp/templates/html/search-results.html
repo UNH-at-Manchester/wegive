@@ -15,7 +15,7 @@
         <tbody>
             {% for charity in res %}
                 <tr>
-                    <td><a href="/select?id={{charity.id}}">{{charity.name}}</a></td>
+                    <td><a href="/select/{{ charity.id }}">{{charity.name}}</a></td>
                     <td>{{charity.address}}</td>
                     <td>{{charity.phone}}</td>
                     <td>{{charity.cause}}</td>

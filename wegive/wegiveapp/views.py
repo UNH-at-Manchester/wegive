@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from . import models
 from . import forms
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
+from .models import Charity
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, JsonResponse
+from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -67,8 +68,13 @@ def search(request):
         form = forms.SearchForm()
         return render(request, "html/search.html", {"form": form})
 
-def select(request):
-    pass
+def select(request, id):
+    """
+    Select charities in order to view their personal page and information.
+    """
+    instance = get_object_or_404(Charity, id=id)
+    context = {"Name": instance.name, "instance": instance, }
+    return render(request, 'html/select-result.html', context)
 
 def pay(request):
     pass

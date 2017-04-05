@@ -1,11 +1,12 @@
 {% extends "html/base.html" %}
+{% load bootstrap %}
 
 {% block title %}Search{% endblock %}
 
 {% block main %}
     <form action="/search/" method="post">
         {% csrf_token %}
-        {{form}}
+        {{ form|bootstrap }}
         <input type="submit" value="Submit" />
     </form>
 {% endblock %}

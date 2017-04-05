@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
-    <link rel="stylesheet" href="../base.css" />
     <title>{% block title %}Untitled{% endblock %}</title>
 </head>
 <body>
-    <nav>
-        {% block nav %}
+    <div class="page-header">
+        <nav>
+            {% block nav %}
 
-        {% endblock %}
-    </nav>
-    <main>
-        {% block main %}
-    
-        {% endblock %}
-    </main>
+            {% endblock %}
+        </nav>
+        <main>
+            {% block main %}
+        
+            {% endblock %}
+        </main>
+    </div>
 </body>
 </html>
