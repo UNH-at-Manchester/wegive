@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from . import models
 from . import forms
-from django.contrib.auth import authenticate, login
-from django.contrib.auth import logout
-from django.http import HttpResponse
+from .models import Charity
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse, JsonResponse
+from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
@@ -67,8 +68,13 @@ def search(request):
         form = forms.SearchForm()
         return render(request, "html/search.html", {"form": form})
 
-def select(request):
-    pass
+def select(request, id):
+    """
+    Select charities in order to view their personal page and information.
+    """
+    instance = get_object_or_404(Charity, id=id)
+    context = {"Name": instance.name, "instance": instance, }
+    return render(request, 'html/select-result.html', context)
 
 def pay(request):
     pass
@@ -106,11 +112,17 @@ def sign_up(request):
 
 
 @login_required
-def view_records(request):
+def view_records(request, json=False):
     """
     View financial records for the current user.
     Requires authentication.
-    No Parameters
+    Parameters:
+    request: supplied by Django.
+    json: boolean value to indicate if this should return JsonResponse.
+
+    Returns:
+    A rendering of the page showing results if json is False. Else, a 
+    JsonResponse containing the data.
     """
     donors = models.Donor.objects.filter(user=request.user.id)
     charities = models.Charity.objects.filter(user=request.user.id)
@@ -130,4 +142,82 @@ def view_records(request):
         for record in charity_records:
             records.append({"type": "charity", "data": record})
 
+    if json:
+        return JsonResponse({"results": records})
+
     return render(request, "html/records.html", {"res": records})
+
+def webhook_endpoint(request):
+    """
+    Endpoint for webhooks from payment services. This is likely how we would
+    generate payment records.
+    NOT IMPLEMENTED
+    """
+    return HttpResponse(status=501)
+
+def api(request):
+    """
+    JSON RESTful API to deliver information to the front-end.
+    POST -> data goes in
+    GET -> data goes out
+
+    GET Parameters:
+    type: One of records, info or charity. records returns financial records
+          using view_records(), and info returns info about the user as a list
+          of dictionaries with values from our database.
+
+    The user must be logged in to use this API.
+
+    requests:
+    user info
+    user records
+    """
+    if request.method == "POST":
+        pass
+    elif request.method == "GET":
+        if not request.user.is_authenticated:
+            return HttpResponse(status=401)
+
+        if request.GET["type"] == "record":
+            return view_records(request, True)
+
+        if request.GET["type"] == "info":
+            rv = {"charity": [], "donor": []}
+            donors = models.Donor.objects.filter(user=request.user)
+            charities = models.Charity.objects.filter(id=request.user)
+            
+            for entry in donors:
+                rv["donor"].append({
+                    "name": entry.name, "address": entry.address,
+                    "phone": entry.phone, "date_of_birth": entry.date_of_birth,
+                    "tags": entry.tags})
+
+            for entry in charities:
+                rv["charity"].append({
+                    "name": entry.name, "address": entry.address,
+                    "phone": entry.phone, "cause": entry.cause,
+                    "tags": entry.tags_csv})
+
+            return JsonResponse(rv)
+
+        if request.GET["type"] == "charity":
+            kwargs = {}
+            for item in request.GET:
+                if item in ("name", "location_x", "location_y", "radius", "tags"):
+                    kwargs[item] = request.GET[item]
+
+            res = match_charity(**kwargs)
+            rv = {"charity": []}
+
+            for charity in res:
+                rv["charity"].append({
+                    "name": charity.name,"address": charity.address,
+                    "phone": charity.phone, "cause": charity.cause, 
+                    "tags": charity.tags_csv})
+
+            return JsonResponse(rv)
+
+        return HttpResponse(status=400)
+
+    else:
+        return HttpResponse(status=405)
