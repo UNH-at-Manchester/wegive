@@ -173,7 +173,7 @@ def api(request):
     user records
     """
     if request.method == "POST":
-        pass
+        return HttpResponse(status=501)
     elif request.method == "GET":
         if not request.user.is_authenticated:
             return HttpResponse(status=401)
