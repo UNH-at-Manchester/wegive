@@ -1,0 +1,28 @@
+{% extends "html/base.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block main %}
+    <table>
+        <thead>
+            <tr>
+                <td>Type</td>
+                <td>From</td>
+                <td>To</td>
+                <td>Amount</td>
+                <td>When</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in res %}
+                <tr>
+                    <td>{{record.type}}</td>
+                    <td>{{record.data.donor}}</td>
+                    <td><a href="/select?id={{record.data.charity.id}}">{{record.data.charity}}</a></td>
+                    <td>{{record.data.amount}}</td>
+                    <td>{{record.data.time}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
