@@ -27,4 +27,4 @@ class SignUpForm(forms.Form):
 	donor_or_Charity = forms.CharField(label="Charity/Donor", max_length=2000)
 
 class SurveyForm(forms.Form):
-	
+	pass
