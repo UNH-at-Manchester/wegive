@@ -221,3 +221,13 @@ def api(request):
 
     else:
         return HttpResponse(status=405)
+
+def survey(request):
+    if request.method == "POST":
+        question_one = request.POST.get('username')
+        question_two = request.POST.get('password')
+        question_three = request.POST.get('name')
+    else:
+        form = forms.SurveyForm()
+        #render the template that has the sign up form        
+        return render(request, "html/survey.html",{"form": form} )
