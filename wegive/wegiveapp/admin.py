@@ -7,4 +7,3 @@ from .models import Charity, Donor, Donation
 admin.site.register(Charity)
 admin.site.register(Donor)
 admin.site.register(Donation)
-
