@@ -1,5 +1,8 @@
 from django import forms
 from . import tags
+from survey.models import Question, Category, Survey, Response, AnswerText, AnswerRadio, AnswerSelect, AnswerInteger, AnswerSelectMultiple
+from django.utils.safestring import mark_safe
+import uuid
 
 class SearchForm(forms.Form):
     name = forms.CharField(label="Charity name", max_length=2000, required=False)
@@ -27,4 +30,8 @@ class SignUpForm(forms.Form):
 	donor_or_Charity = forms.CharField(label="Charity/Donor", max_length=2000)
 
 class SurveyForm(forms.Form):
-	
+	doror_or_charity = forms.CharField(label="Charity/Donor", max_length=2000)
+	interests = forms.CharField(label="What are you passionate about?", max_length=2000)
+	past = forms.CharField(label="Have you donated in the past?", max_length=2000)
+	cause = forms.CharField(label="What cause have you donated for in the past?", max_length=2000)
+	reason = forms.CharField(label="What cause would you like to donate for?", max_length=2000)

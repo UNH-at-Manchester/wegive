@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 
 # Create your models here.
 class Charity(models.Model):
@@ -47,3 +48,4 @@ class Donation(models.Model):
     amount = models.DecimalField(max_digits=16, decimal_places=3, null=False,
                                  blank=False)
     time = models.DateTimeField(auto_now_add=True, null=False, blank=False)
+
