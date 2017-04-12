@@ -27,4 +27,5 @@ urlpatterns = [
     url(r"^record/", views.view_records),
     url(r"^api/", views.api),
     url(r"^select/(?P<id>\d+)/$", views.select),
-]
+    url(r"^survey/", views.survey),
+    ]
