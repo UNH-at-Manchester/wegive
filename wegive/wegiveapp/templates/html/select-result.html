@@ -1,10 +1,11 @@
-<html>
+{% extends "html/base.html" %}
 
-<!---
-This just needs to display the page for the charity that was selected.
--->
-<body>
-<h1>{{ instance.name }}</h1>
-
-</body>
+{% block main %}
+<div class="container">
+    <h1>{{ instance.name }}</h1>
+    <h4 class="text-muted">{{ instance.address }}</h4>
+    <h4 class="text-primary">{{ instance.cause }}</h4>
+    <h4 class="text-info">{{ instance.phone }}</h4>
+</div>
+{% endblock %}
 </html>

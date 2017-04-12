@@ -31,5 +31,3 @@ class SurveyForm(forms.Form):
 	question_two = forms.CharField(label="What are your interests?", max_length=2000)
 	question_three = forms.CharField(label="Have you donated before?", max_length=2000)
 	question_four = forms.CharField(label="What kind of charities will you be willing to donate to?", max_length=2000)
-
-	

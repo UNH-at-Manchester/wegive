@@ -1,12 +1,15 @@
 {% extends "html/base.html" %}
-{% load bootstrap %}
+{% load crispy_forms_tags %}
 
 {% block title %}Search{% endblock %}
 
 {% block main %}
+<div class="container">
+    <h1> Search for Charities </h1>
     <form action="/search/" method="post">
         {% csrf_token %}
-        {{ form|bootstrap }}
-        <input type="submit" value="Submit" />
+        {{ form|crispy }}
+        <input class="btn btn-primary" type="submit" value="Submit" />
     </form>
+</div>
 {% endblock %}
