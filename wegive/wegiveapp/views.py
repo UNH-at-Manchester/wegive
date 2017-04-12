@@ -58,6 +58,7 @@ def search(request):
     if request.method == "POST":
         # TODO: near me test
         kwargs = {}
+        print(request.POST)
         for item in request.POST:
             if item in ("name", "location_x", "location_y", "radius", "tags"):
                 kwargs[item] = request.POST[item]
