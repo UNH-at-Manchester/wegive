@@ -130,5 +130,3 @@ STATICFILES_FINDERS = [
 ]
 
 STATIC_URL = '/static/'
-
-CRISPY_TEMPLATE_PACK = 'bootstrap'
