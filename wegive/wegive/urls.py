@@ -28,4 +28,5 @@ urlpatterns = [
     url(r"^api/", views.api),
     url(r"^select/(?P<id>\d+)/$", views.select),
     url(r"^survey/", views.survey),
+    url(r"^homepage/", views.homepage),
     ]

@@ -87,7 +87,7 @@ def loginat(request):
     if user is not None:
         login(request, user)
         #return render(request,...)
-        return HttpResponse(status=200)
+        return render(request, "html/homepage.html", {})
     else:
         form = forms.LoginForm()
         return render(request, "html/loginat.html", {"form": form})
@@ -95,7 +95,7 @@ def loginat(request):
 def logoutat(request):
     logout(request)
     form = forms.LoginForm()
-    return render(request, "html/loginat.html", {"form": form}) 
+    return render(request, "html/homepage.html", {"form": form}) 
 
 def sign_up(request):
     if request.method == "POST":
@@ -229,6 +229,8 @@ def survey(request):
         question_two = request.POST.get('password')
         question_three = request.POST.get('name')
     else:
-        form = forms.SurveyForm()
-        #render the template that has the sign up form        
+        form = forms.SurveyForm()        
         return render(request, "html/survey.html",{"form": form} )
+
+def homepage(request):
+    return render(request, "html/homepage.html", {})
