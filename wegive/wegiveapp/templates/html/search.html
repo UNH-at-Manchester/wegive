@@ -4,14 +4,20 @@
 
 {% block main %}
 <body>
-<div class="container">
-<h1> Search for Charities </h1>
-<form class="form-horizontal" action="/search/" method="post">
+<div class="container jumbotron">
+<h1 class="text-center"> WeGive Charity Search </h1>
+<br>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 text-center">
+        <p>Use the form below to search for charities in your area! </p>
+    </div>
+</div>
+<br>
+<div class="col-md-6 col-md-offset-3">
+<form class="contact-form" action="/search/" method="post">
 {% csrf_token %}
     <div class="form-group">
-        <div class="col-lg-10">
             <input type="text" class="form-control" id="name" placeholder="Charity Name">
-        </div>
     </div>
     <div class="checkbox">
         <label>
@@ -19,49 +25,30 @@
         </label>
     </div>
     <div class="form-group">
-        <div class="col-lg-10">
             <input type="text" class="form-control" id="locationX" placeholder="Location X">
-        </div>
     </div>
     <div class="form-group">
-        <div class="col-lg-10">
             <input type="text" class="form-control" id="locationY" placeholder="Location Y">
-        </div>
     </div>
     <div class="form-group">
-        <div class="col-lg-10">
             <input type="text" class="form-control" id="Radius" placeholder="Radius">
-        </div>
-    </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox"> Religious
-        </label>
-    </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox"> Animals
-        </label>
-    </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox"> Education
-        </label>
-    </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox"> Public Opinion
-        </label>
-    </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox"> Other
-        </label>
     </div>
     <div class="form-group">
-        <button type="submit" class="btn btn-primary">Search</button>
+        <label for="select" class="control-label">Charity Cause</label>
+                <select class="form-control" id="select">
+            <option> Please select a cause </option>
+            <option> Religious </option>
+            <option> Animals </option>
+            <option> Education </option>
+            <option> Public Opinion </option>
+            <option> Other </option>
+            </select>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">Search</button>
     </div>
 </form>
+</div>
 </div>
 </body>
 </div>

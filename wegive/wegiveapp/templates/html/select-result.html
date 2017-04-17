@@ -1,8 +1,10 @@
 {% extends "html/base.html" %}
 
+{% block title %}{{ instance.name }}{% endblock %}
+
 {% block main %}
 <div class="container">
-    <h1>{{ instance.name }}</h1>
+    <h1 class="text-center">{{ instance.name }}</h1>
     <h4 class="text-muted">{{ instance.address }}</h4>
     <h4 class="text-primary">{{ instance.cause }}</h4>
     <h4 class="text-info">{{ instance.phone }}</h4>
