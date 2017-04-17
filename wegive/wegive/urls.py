@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.conf.urls.static import static
+from django.views.generic import TemplateView
 from django.contrib import admin
 from wegiveapp import views
 
@@ -28,4 +29,5 @@ urlpatterns = [
     url(r"^api/", views.api),
     url(r"^select/(?P<id>\d+)/$", views.select),
     url(r"^survey/", views.survey),
+    url(r"^/?", TemplateView.as_view(template_name="html/homepage.html"))
     ]
