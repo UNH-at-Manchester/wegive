@@ -4,6 +4,7 @@
 
 {% block main %}
 <div class="container">
+	<h1> Login </h1>
     <form action="/loginat/" method="post">
         {% csrf_token %}
         {{form}}

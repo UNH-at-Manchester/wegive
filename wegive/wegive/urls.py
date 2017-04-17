@@ -29,5 +29,5 @@ urlpatterns = [
     url(r"^api/", views.api),
     url(r"^select/(?P<id>\d+)/$", views.select),
     url(r"^survey/", views.survey),
-    url(r"^/?", TemplateView.as_view(template_name="html/homepage.html"))
+    url(r"^/?", TemplateView.as_view(template_name="html/homepage.html")),
     ]

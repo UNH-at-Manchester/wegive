@@ -4,6 +4,9 @@
 <html lang="en">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static '/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    {% block head %}
+
+    {% endblock %}
 <head>
     <title>{% block title %}Untitled{% endblock %}</title>
 </head>
@@ -15,9 +18,9 @@
             {% endblock %}
         </nav>
         <header>
-        {% block header %}
+            {% block header %}
 
-        {% endblock %}
+            {% endblock %}
         </header>
     </div>
     <main>
