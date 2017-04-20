@@ -23,6 +23,7 @@
 	
     <div><select id="locationSelect" style="width: 10%; visibility: hidden"></select></div>
     <div id="map" style="width: 500px; height: 500px"></div>
+
     <script >
       var map;
       var markers = [];
@@ -186,6 +187,8 @@
 		locationSelect.appendChild(option);
 		locationSelect.style.visibility = "visible";
 		}
+
+		csrf_token = "{{ csrf_token }}";
 		
 		function loadCharity(){
 		console.log("loadCharity function called")
@@ -193,6 +196,7 @@
 		url : '/api/',
 		dataType : 'json',
 		type : 'GET',
+		data : {csrfmiddlewaretoken:'{{csrf_token}}' },
 		success: function(charity){
 
          console.log(charity);
@@ -204,10 +208,9 @@
 		console.log("error?");
 		}});
 		}
-		
+
 		loadCharity();
 
-		
        function doNothing() {}
   </script>
     <script async defer
