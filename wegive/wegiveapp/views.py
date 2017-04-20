@@ -176,7 +176,7 @@ def api(request):
     if request.method == "POST":
         return HttpResponse(status=501)
     elif request.method == "GET":
-        if not request.user.is_authenticated:
+        if not request.user.is_authenticated and request.GET["type"] != "charity":
             return HttpResponse(status=401)
 
         if request.GET["type"] == "record":
