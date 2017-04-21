@@ -1,0 +1,39 @@
+{% extends "html/base.html" %}
+{% load static %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block main %}
+<div class="container">
+	<h1> Contact Us </h1>
+    <form action="/contact/" method="post">
+        {% csrf_token %}
+        {{form}}
+        <input class="btn btn-primary" type="submit" value="Submit" />
+    </form>
+    <h6> Email : wegiveunh@gmail.com </h6>
+    <h6> Phone : 123456789 </h6>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
