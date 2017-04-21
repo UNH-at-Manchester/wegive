@@ -192,19 +192,20 @@
 		
 		function loadCharity(){
 		console.log("loadCharity function called")
-		jQuery.ajax({
+		$.ajax({
 		url : '/api/',
 		dataType : 'json',
 		type : 'GET',
-		data : {csrfmiddlewaretoken:'{{csrf_token}}' },
-		success: function(charity){
-
-         console.log(charity);
+		beforeSend: function(xmlHTTPRequest){
+		xmlHTTPRequest.setRequestHeader('X-CSRFToken', csrf_token)
+		},
+		success: function(result){
+		var charity = {};
 		 console.log("success");
 		 return charity;
 		},
 		
-		error : function(charity){
+		error : function(){
 		console.log("error?");
 		}});
 		}
