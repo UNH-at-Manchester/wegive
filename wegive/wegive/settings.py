@@ -130,3 +130,12 @@ STATICFILES_FINDERS = [
 ]
 
 STATIC_URL = '/static/'
+
+#EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+DEFAULT_FROM_EMAIL = 'test@gmail.com'
+EMAIL_HOST_USER = 'localhost'
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_TLS = True 
+EMAIL_PORT = 25
+
