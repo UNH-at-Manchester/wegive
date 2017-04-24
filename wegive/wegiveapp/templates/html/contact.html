@@ -26,6 +26,8 @@
                 </li>
                 <li class="page-scroll"><a href="/survey">Survey</a>
                 </li>
+                <li class="page-scroll"><a href="/contact">Contact Us</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -36,6 +38,7 @@
 {% block main %}
 <div class="container-fluid bg-1 text-center">
 	<h1> Contact Us </h1>
+    <br>
     <form action="/contact/" method="post">
         {% csrf_token %}
         {{form}}
