@@ -235,6 +235,10 @@ def survey(request):
     else:
         form = forms.SurveyForm()        
         return render(request, "html/survey.html",{"form": form} )
+        
+def about(request):
+    return render(request, "html/about.html", {})
+    
 def contact(request):
     form = forms.ContactForm()
     if request.method == 'POST':
