@@ -2,6 +2,38 @@
 
 {% block title %}Results{% endblock %}
 
+{% block nav %}
+<body>
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <i class="fa fa-bars"></i>
+            </button>
+                <a class="navbar-brand" href="/">WeGive</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="page-scroll"><a href="/sign_up">Sign Up</a>
+                </li>
+                <li class="page-scroll"><a href="/search">Search</a>
+                </li>
+                <li class="page-scroll"><a href="/about">About</a>
+                </li>
+                <li class="page-scroll"><a href="/loginat">Login</a>
+                </li>
+                <li class="page-scroll"><a href="/survey">Survey</a>
+                </li>
+                <li class="page-scroll"><a href="/contact">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+<!--- End Navbar --->
+
 {% block main %}
     <table>
         <thead>
@@ -25,4 +57,5 @@
             {% endfor %}
         </tbody>
     </table>
+</body>
 {% endblock %}

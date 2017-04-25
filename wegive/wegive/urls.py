@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
@@ -25,6 +26,7 @@ urlpatterns = [
     url(r"^loginat/", views.loginat),
     url(r"^logoutat/", views.logoutat),
     url(r"^sign_up/", views.sign_up, name='signup'),
+    url(r"^about/", views.about),
     url(r"^record/", views.view_records),
     url(r"^api/", views.api),
     url(r"^select/(?P<id>\d+)/$", views.select),
@@ -32,3 +34,7 @@ urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="html/homepage.html")),
     url(r'^contact/', views.contact),
     ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    
