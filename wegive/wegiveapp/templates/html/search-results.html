@@ -6,23 +6,13 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 <form method="get">
 {% csrf_token %}
+{% load static %}
   <body style="margin:0px; padding:0px;" onload="initMap()">
-    <div>
-         <label for="raddressInput">Search location:</label>
-         <input type="text" id="addressInput" size="15"/>
-        <label for="radiusSelect">Radius:</label>
-        <select id="radiusSelect" label="Radius">
-          <option value="50" selected>50 kms</option>
-          <option value="30">30 kms</option>
-          <option value="20">20 kms</option>
-          <option value="10">10 kms</option>
-        </select>
 
-        <input type="button" id="searchButton" value="Search"/>
-    </div>
-	
-    <div><select id="locationSelect" style="width: 10%; visibility: hidden"></select></div>
-    <div id="map" style="width: 500px; height: 500px"></div>
+	<h1 class="text-center"> Charity Results </h1>
+    <div align="center"><select id="locationSelect" style="width: 10%; visibility: hidden"></select></div>
+    <div align="center" id="map" style="width: 60%; height: 500px;  margin-left: auto;
+  margin-right: auto;"></div>
 
     <script >
       var map;
@@ -40,19 +30,13 @@
           });
           infoWindow = new google.maps.InfoWindow();
 
-          searchButton = document.getElementById("searchButton").onclick = searchLocations;
-
-          locationSelect = document.getElementById("locationSelect");
-          locationSelect.onchange = function() {
-            var markerNum = locationSelect.options[locationSelect.selectedIndex].value;
-            if (markerNum != "none"){
-              google.maps.event.trigger(markers[markerNum], 'click');
-            }
-          };
+		  var icon = "{% static '/img/WeGiveOfficalLogo.png' %}"
+		  
 		  {% for charity in res %}
             var point = new google.maps.LatLng({{charity.location_x}},{{charity.location_y}});
             var marker = new google.maps.Marker({
             position: point,
+			title: '{{charity.name}}',
             map: map
         });
         {% endfor %} 
@@ -75,6 +59,14 @@
           // Browser doesn't support Geolocation
           handleLocationError(false, infoWindow, map.getCenter());
         }
+		
+		var infowindow = new google.maps.InfoWindow({
+          content: '{{charity.address}}'
+        });
+		
+		marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
       }
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -110,37 +102,6 @@
          option.value = "none";
          option.innerHTML = "See all results:";
          locationSelect.appendChild(option);
-       }
-
-       function searchLocationsNear(center) {
-         clearLocations();
-
-         var radius = document.getElementById('radiusSelect').value;
-         var searchUrl = 'storelocator.php?lat=' + center.lat() + '&lng=' + center.lng() + '&radius=' + radius;
-         downloadUrl(searchUrl, function(data) {
-           var xml = parseXml(data);
-           var markerNodes = xml.documentElement.getElementsByTagName("marker");
-           var bounds = new google.maps.LatLngBounds();
-           for (var i = 0; i < markerNodes.length; i++) {
-             var id = markerNodes[i].getAttribute("id");
-             var name = markerNodes[i].getAttribute("name");
-             var address = markerNodes[i].getAttribute("address");
-             var distance = parseFloat(markerNodes[i].getAttribute("distance"));
-             var latlng = new google.maps.LatLng(
-                  parseFloat(markerNodes[i].getAttribute("lat")),
-                  parseFloat(markerNodes[i].getAttribute("lng")));
-
-             createOption(name, distance, i);
-             createMarker(latlng, name, address);
-             bounds.extend(latlng);
-           }
-           map.fitBounds(bounds);
-           locationSelect.style.visibility = "visible";
-           locationSelect.onchange = function() {
-             var markerNum = locationSelect.options[locationSelect.selectedIndex].value;
-             google.maps.event.trigger(markers[markerNum], 'click');
-           };
-         });
        }
 
        function downloadUrl(url, callback) {
@@ -195,34 +156,6 @@
 		locationSelect.style.visibility = "visible";
 		}
 
-		csrf_token = "{{ csrf_token }}";
-		
-		function loadMarkers(){
-        
-			}
-    
-		
-		
-		function loadCharity(){
-		console.log("loadCharity function called");
-		$.ajax({
-		url : '/api/',
-		dataType : 'json',
-		type : 'GET',
-		beforeSend: function(xmlHTTPRequest){
-		xmlHTTPRequest.setRequestHeader('X-CSRFToken', csrf_token);
-		},
-		success: function(){
-		 console.log("success");
-		},
-		
-		error : function(){
-		console.log("error");
-		}});
-		}
-		
-		loadMarkers();
-
        function doNothing() {}
   </script>
     <script async defer
@@ -232,7 +165,7 @@
   </form>
 
 <div class="container">
-    <h1 class="text-center"> Charity Results </h1>
+    
 
     <table class="table table-hover">
         <thead>

@@ -64,33 +64,32 @@
 <!--webpage info-->
 {% block header %}
     <!-- <img src="{% static '/img/unhmanchester.jpg' %}" alt="UNH at manchester" style="width:1354px;"> -->
-
-    <div class="social">
-        <a href="http://facebook.com/">
-            <img src="{% static '/img/facebookthumb.jpg' %}" alt="Facebook">
-        </a>
-        <a href="http://twitter.com/">
-            <img src="{% static '/img/twitterthumb.png' %}" alt="Twitter">
-        </a>
-        <a href="http://instagram.com/">
-            <img src="{% static '/img/instagramthumb.png' %}" alt="Instagram">
-        </a>
-        <a href="http://youtube.com/">
-            <img src="{% static '/img/youtubethumb.jpg' %}" alt="Youtube">
-        </a>
-    </div>
-
     <div class="logo">
         <h1>WeGive</h1>
         <img src="{% static '/img/transparent-logo.png' %}">
     </div>
 {% endblock %}
 {% block nav %}
-    <a href="#" class="btn btn-primary">Login</a>
-<!--     <ul>
-        <li><a href="#/first link to another webpage.html">Name of the webpage</a>
-        </li>
-    </ul>  -->
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <a align="center" class="navbar-brand" href="#"><img src="{% static '/img/WeGiveOfficialLogo.png' %}" style="width:15px;height:15px">WeGive</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Link</a></li>
+		<li class="active"><a href="{% url 'search' %}">Home</a></li>
+        <li><a href="{% url 'search' %}">Search</a></li>
+		<li><a href="http://facebook.com/"><img src="{% static '/img/facebookthumb.jpg' %}" alt="Facebook" style="width:25px;height:25px"></a></li>
+		<li><a href="http://twitter.com/"><img src="{% static '/img/twitterthumb.png' %}" alt="Twitter" style="width:25px;height:25px"></a></li>
+		<li><a href="http://instagram.com/"><img src="{% static '/img/instagramthumb.png' %}" alt="Instagram" style="width:25px;height:25px"></a></li>
+		<li><a href="http://youtube.com/"><img src="{% static '/img/youtubethumb.png' %}" alt="Youtube" style="width:25px;height:20px"></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 {% endblock %}
 
 {% block main %}
