@@ -22,10 +22,10 @@ from wegiveapp import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r"^search/", views.search),
+    url(r"^search/", views.search, name='search'),
     url(r"^loginat/", views.loginat),
     url(r"^logoutat/", views.logoutat),
-    url(r"^sign_up/", views.sign_up),
+    url(r"^sign_up/", views.sign_up, name='signup'),
     url(r"^about/", views.about),
     url(r"^record/", views.view_records),
     url(r"^api/", views.api),

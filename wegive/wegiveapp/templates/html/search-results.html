@@ -34,6 +34,169 @@
 {% endblock %}
 <!--- End Navbar --->
 {% block main %}
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<form method="get">
+{% csrf_token %}
+{% load static %}
+  <body style="margin:0px; padding:0px;" onload="initMap()">
+
+	<h1 class="text-center"> Charity Results </h1>
+    <div align="center"><select id="locationSelect" style="width: 10%; visibility: hidden"></select></div>
+    <div align="center" id="map" style="width: 60%; height: 500px;  margin-left: auto;
+  margin-right: auto;"></div>
+
+    <script >
+      var map;
+      var markers = [];
+      var infoWindow;
+      var locationSelect;
+
+        function initMap() {
+          var c = {lat: -33.863276, lng: 151.107977};
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: c,
+            zoom: 11,
+            mapTypeId: 'roadmap',
+            mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU}
+          });
+          infoWindow = new google.maps.InfoWindow();
+
+		  var icon = "{% static '/img/WeGiveOfficalLogo.png' %}"
+		  
+		  {% for charity in res %}
+            var point = new google.maps.LatLng({{charity.location_x}},{{charity.location_y}});
+            var marker = new google.maps.Marker({
+            position: point,
+			title: '{{charity.name}}',
+            map: map
+        });
+        {% endfor %} 
+		  
+		  // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var pos = {
+              lat: position.coords.latitude,
+              lng: position.coords.longitude
+            };
+
+            infoWindow.setPosition(pos);
+            infoWindow.open(map);
+            map.setCenter(pos);
+          }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+          });
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+		
+		var infowindow = new google.maps.InfoWindow({
+          content: '{{charity.address}}'
+        });
+		
+		marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+      }
+
+      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+		  
+        }
+
+       function searchLocations() {
+         var address = document.getElementById("addressInput").value;
+         var geocoder = new google.maps.Geocoder();
+         geocoder.geocode({address: address}, function(results, status) {
+           if (status == google.maps.GeocoderStatus.OK) {
+            searchLocationsNear(results[0].geometry.location);
+           } else {
+             alert(address + ' not found');
+           }
+         });
+       }
+
+       function clearLocations() {
+         infoWindow.close();
+         for (var i = 0; i < markers.length; i++) {
+           markers[i].setMap(null);
+         }
+         markers.length = 0;
+
+         locationSelect.innerHTML = "";
+         var option = document.createElement("option");
+         option.value = "none";
+         option.innerHTML = "See all results:";
+         locationSelect.appendChild(option);
+       }
+
+       function downloadUrl(url, callback) {
+          var request = window.ActiveXObject ?
+              new ActiveXObject('Microsoft.XMLHTTP') :
+              new XMLHttpRequest;
+
+          request.onreadystatechange = function() {
+            if (request.readyState == 4) {
+              request.onreadystatechange = doNothing;
+              callback(request.responseText, request.status);
+            }
+          };
+
+          request.open('GET', url, true);
+          request.send(null);
+       }
+
+       function createOption(name, num) {
+		var option = document.createElement("option");
+		option.value = num;
+		option.innerHTML = name;
+		locationSelect.appendChild(option);
+		}
+	   
+	   
+	   function createMarker(latlng, name, address) {
+		var html = "<b>" + name + "</b> <br/>" + address;
+		var marker = new google.maps.Marker({
+		map: map,
+		position: latlng
+		});
+		google.maps.event.addListener(marker, 'click', function() {
+		infoWindow.setContent(html);
+		infoWindow.open(map, marker);
+		});
+		markers.push(marker);
+		}
+		
+		function clearLocations() {
+		infoWindow.close();
+		for (var i = 0; i < markers.length; i++) {
+		markers[i].setMap(null);
+		}
+		markers.length = 0;
+		
+		locationSelect.innerHTML = "";
+		var option = document.createElement("option");
+		option.value = "none";
+		option.innerHTML = "See all results:";
+		locationSelect.appendChild(option);
+		locationSelect.style.visibility = "visible";
+		}
+
+       function doNothing() {}
+  </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAG9u_pv84ANa9XiI828EP6uNGxx42ENVo&callback=initMap">
+    </script>
+  </body>
+  </form>
+
+<div class="container">
+
 <div class="container-fluid bg-3 text-center">
     <h1 class="text-center"> Charity Results </h1>
     <br>
