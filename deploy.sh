@@ -15,7 +15,7 @@ rm -rf .git
 rm db.sqlite3
 sed "s/DEBUG = True/DEBUG = False/g" wegive/settings.py > wegive/settings.py.new
 mv wegive/settings.py.new wegive/settings.py
-sed "s/SECRET_KEY = cd.*/SECRET_KEY = $SECRET_KEY/g" wegive/settings.py > wegive/settings.py.new
+sed "s/SECRET_KEY = .*/SECRET_KEY = '$SECRET_KEY'/g" wegive/settings.py > wegive/settings.py.new
 mv wegive/settings.py.new wegive/settings.py
 cd ..
 
