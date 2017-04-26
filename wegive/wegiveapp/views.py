@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect
 from . import models
 from . import forms
 from .models import Charity
@@ -6,6 +7,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, JsonResponse
 from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required
+from django.core.mail import EmailMessage, send_mail
+from django.template import Context
+from django.template.loader import get_template
 # Create your views here.
 
 def match_charity(name="", tags=[], location_x=0.0, location_y=0.0, radius=0.0):
@@ -176,7 +180,7 @@ def api(request):
     if request.method == "POST":
         return HttpResponse(status=501)
     elif request.method == "GET":
-        if not request.user.is_authenticated:
+        if not request.user.is_authenticated and request.GET["type"] != "charity":
             return HttpResponse(status=401)
 
         if request.GET["type"] == "record":
@@ -231,3 +235,45 @@ def survey(request):
     else:
         form = forms.SurveyForm()        
         return render(request, "html/survey.html",{"form": form} )
+        
+def about(request):
+    return render(request, "html/about.html", {})
+    
+def contact(request):
+    form = forms.ContactForm()
+    if request.method == 'POST':
+        form1 = forms.ContactForm(data=request.POST)
+        if form1.is_valid():
+            contact_name = request.POST.get( 'contact_name', '' )
+            contact_email = request.POST.get( 'contact_email', '' )
+            form_content = request.POST.get('content', '')
+
+            #Email stuff
+
+            template = get_template('contact_temp.txt')
+            
+            context = Context({
+                'contact_name': contact_name,
+                'contact_email': contact_email,
+                'form_content': form_content,
+                })
+            content = template.render(context)
+
+            # send_mail(
+            #     'test ',
+            #     'Here is the message.',
+            #     'from@example.com',
+            #     ['contact_email'],
+            #     fail_silently= False,
+            #     )
+            email = EmailMessage(
+                "New Contact",
+                content,
+                "WeGive"+"", ['wegiveunh@gmail.com'],
+                headers = {'Reply-To': contact_email }
+            )
+            email.send()
+            #return redirect('contact') 
+
+   
+    return render(request, "html/contact.html", {'form': form})
