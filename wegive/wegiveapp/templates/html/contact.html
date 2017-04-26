@@ -41,7 +41,9 @@
     <br>
     <form action="/contact/" method="post">
         {% csrf_token %}
+		<table align="center">
         {{form}}
+		</table>
         <input class="btn btn-primary" type="submit" value="Submit" />
     </form>
     <h6> Email : wegiveunh@gmail.com </h6>
