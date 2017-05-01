@@ -113,7 +113,7 @@ def sign_up(request):
     else:
         form = forms.SignUpForm()
         #render the template that has the sign up form        
-        return render(request, "html/signup.html",{"form": form} )
+        return render(request, "html/homepage.html",{"form": form} )
 
 
 @login_required
