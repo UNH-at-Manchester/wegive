@@ -33,8 +33,8 @@ class SurveyForm(forms.Form):
 	question_four = forms.CharField(label="What kind of charities will you be willing to donate to?", max_length=2000)
 
 class ContactForm(forms.Form):
-	contact_name = forms.CharField(required=True)
-	contact_email = forms.EmailField(required=True)
-	content = forms.CharField( required=True, max_length=4000)
+	name = forms.CharField(required=True)
+	email = forms.EmailField(required=True)
+	message = forms.CharField( required=True, max_length=4000)
 
 	
