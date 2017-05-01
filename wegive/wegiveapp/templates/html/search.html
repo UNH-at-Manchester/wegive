@@ -37,7 +37,7 @@
     </div>
 </nav>
 {% endblock %}
-<!--- End Navbar --->
+<!-- End Navbar -->
 
 {% block main %}
 <div class="container-fluid bg-1 text-center">
@@ -52,21 +52,21 @@
 <form class="contact-form" action="/search/" method="post">
 {% csrf_token %}
     <div class="form-group">
-            <input type="text" class="form-control" id="name" placeholder="Charity Name">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Charity Name">
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" id="near_me"> Near Me
+            <input type="checkbox" name="near_me" id="near_me"> Near Me
         </label>
     </div>
     <div class="form-group">
-            <input type="text" class="form-control" id="locationX" placeholder="Location X">
+            <input type="text" name="locationX" class="form-control" id="locationX" placeholder="Location X">
     </div>
     <div class="form-group">
-            <input type="text" class="form-control" id="locationY" placeholder="Location Y">
+            <input type="text" name="locationY" class="form-control" id="locationY" placeholder="Location Y">
     </div>
     <div class="form-group">
-            <input type="text" class="form-control" id="Radius" placeholder="Radius">
+            <input type="text" name="radius" class="form-control" id="Radius" placeholder="Radius">
     </div>
     <div class="form-group">
         <label for="select" class="control-label">Charity Cause</label>
@@ -86,7 +86,7 @@
 </div>
 </div>
 </div>
-<!--- Footer --->
+<!-- Footer -->
 <footer class="text-center">
     <div class="footer-above">
         <div class="container">
