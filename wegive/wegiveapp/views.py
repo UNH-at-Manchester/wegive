@@ -232,9 +232,10 @@ def survey(request):
         question_one = request.POST.get('username')
         question_two = request.POST.get('password')
         question_three = request.POST.get('name')
+    else:    
         form = forms.SurveyForm()        
         return render(request, "html/survey.html",{"form": form} )
-        
+
 def about(request):
     return render(request, "html/about.html", {})
     
