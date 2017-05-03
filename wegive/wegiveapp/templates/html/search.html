@@ -60,11 +60,6 @@
     <div class="form-group">
             <input type="text" class="form-control" name="name" placeholder="Charity Name">
     </div>
-    <div class="checkbox">
-        <label>
-            <input type="checkbox" name="near_me"> Near Me
-        </label>
-    </div>
     <div class="form-group">
             <input type="text" class="form-control" name="location_x" placeholder="Location X">
     </div>
@@ -74,9 +69,14 @@
     <div class="form-group">
             <input type="text" class="form-control" name="radius" placeholder="Radius">
     </div>
+	<div class="checkbox" align="left">
+        <label>
+            <input type="checkbox" id="near_me"> Near Me
+        </label>
+    </div>
     <div class="form-group">
         <label for="select" class="control-label">Charity Cause</label>
-            <select class="form-control" name="tags_csv">
+            <select class="form-control" name="tags">
             <option> Please select a cause </option>
             <option> Religious </option>
             <option> Animals </option>

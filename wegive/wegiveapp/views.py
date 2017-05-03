@@ -99,7 +99,7 @@ def loginat(request):
 def logoutat(request):
     logout(request)
     form = forms.LoginForm()
-    return render(request, "html/homepage.html", {"form": form}) 
+    return render(request, "html/loginat.html", {"form": form}) 
 
 def sign_up(request):
     if request.method == "POST":
@@ -109,7 +109,7 @@ def sign_up(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         address = request.POST.get("address")
-        user = User.objects.create_user(usename=usename, password=password)
+        user = User.objects.create_user(username=username, password=password)
     else:
         form = forms.SignUpForm()
         #render the template that has the sign up form        
@@ -232,10 +232,10 @@ def survey(request):
         question_one = request.POST.get('username')
         question_two = request.POST.get('password')
         question_three = request.POST.get('name')
-    else:
+    else:    
         form = forms.SurveyForm()        
         return render(request, "html/survey.html",{"form": form} )
-        
+
 def about(request):
     return render(request, "html/about.html", {})
     
