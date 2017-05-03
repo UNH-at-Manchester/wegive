@@ -18,11 +18,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="page-scroll"><a href="/sign_up">Sign Up</a>
                 </li>
+                <li class="page-scroll"><a href="/loginat">Login</a>
+                </li>
                 <li class="page-scroll"><a href="/search">Search</a>
                 </li>
                 <li class="page-scroll"><a href="/about">About</a>
-                </li>
-                <li class="page-scroll"><a href="/loginat">Login</a>
                 </li>
                 <li class="page-scroll"><a href="/survey">Survey</a>
                 </li>
@@ -36,21 +36,44 @@
 <!--- End Navbar --->
 
 {% block main %}
-<div class="container-fluid bg-1 text-center">
-	<h1> Contact Us </h1>
-    <br>
-    <form action="/contact/" method="post">
-        {% csrf_token %}
-		<table align="center">
-        {{form}}
-		</table>
-        <br>
-        <input class="btn btn-primary" type="submit" value="Submit" />
-    </form>
-    <br>
-    <h6> Email : wegiveunh@gmail.com </h6>
-    <h6> Phone : 123456789 </h6>
-</div>
+<section class="success" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+            <br>
+            <br>
+            <br>
+                <h2>Contact Us</h2>
+                <hr class="star-light">
+                </hr>
+                <p> If you want to learn more about WeGive, or if we can help you
+                with anything, please fill out the contact form below!
+                </p>
+                <br>
+                <div class="col-md-6 col-md-offset-3">
+                    <form action="/contact/" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                                <input type="text" class="form-control" name="contact_name" placeholder="Contact Name">
+                        </div>
+                        <div class="form-group">
+                                <input type="text" class="form-control" name="contact_email" placeholder="Contact Email">
+                        </div>
+                                    <div class="form-group">
+                                <input type="text" class="form-control" name="content" placeholder="Content">
+                        </div>
+                        <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </div>
+                    </form>
+                    <br>
+                    <h6> Email : wegiveunh@gmail.com </h6>
+                    <h6> Phone : 123456789 </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!--- Footer --->
 <footer class="text-center">
