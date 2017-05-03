@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage, send_mail
 from django.template import Context
 from django.template.loader import get_template
+from django.contrib.auth.models import User
 # Create your views here.
 
 def match_charity(name="", tags=[], location_x=0.0, location_y=0.0, radius=0.0):
@@ -110,6 +111,9 @@ def sign_up(request):
         phone = request.POST.get('phone')
         address = request.POST.get("address")
         user = User.objects.create_user(username=username, password=password)
+        form = forms.SignUpForm()
+        user.save()
+        return render(request, "html/homepage.html",{"form": form} )
     else:
         form = forms.SignUpForm()
         #render the template that has the sign up form        
