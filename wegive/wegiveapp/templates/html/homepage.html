@@ -18,15 +18,15 @@
             </button>
                 <a class="navbar-brand" href="/">WeGive</a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" aria-expanded="false" style="height: 1px;">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li class="page-scroll"><a href="/sign_up">Sign Up</a>
+                </li>
+                <li class="page-scroll"><a href="/loginat">Login</a>
                 </li>
                 <li class="page-scroll"><a href="/search">Search</a>
                 </li>
                 <li class="page-scroll"><a href="/about">About</a>
-                </li>
-                <li class="page-scroll"><a href="/loginat">Login</a>
                 </li>
                 <li class="page-scroll"><a href="/survey">Survey</a>
                 </li>
@@ -41,49 +41,80 @@
 {% block main %}
 <!--- Header and logo --->
 <header>
-<div class="container-fluid bg-1 text-center">
-        <img src="{% static 'img/WeGiveOfficialLogo.png' %}" class="img-responsive img-circle margin" alt="logo" width="350" height="350">
-        <div class="intro-text">
-            <h1 class="name">WeGive</h1>
-            <hr class="star-light">
-            </hr>
-            <span class="skills">Charitable Giving Done Right</span>
+<div class="container" id="maincontent" tabindex="-1">
+    <div class="row">
+        <div class="col-lg=12">
+            <img src="{% static 'img/WeGiveOfficialLogo.png' %}" class="img-responsive" alt="logo" width="300" height="300">
+                <div class="intro-text">
+                    <h1 class="name">WeGive</h1>
+                    <hr class="star-light">
+                    </hr>
+                    <span class="skills">Charitable Giving Done Right</span>
+                </div>
         </div>
+    </div>
 </div>
 </header>
 <!--- End Header and logo --->
-<!--- Who we are ---> 
-<div class="container-fluid bg-2 text-center">
-    <h1 class="margin"> Who We Are </h1>
-    <p>Context about who we are, and why we are doing this. Want to search
-        for charities in your area? Select the link below!
-    </p>
-    <br>
-    <a href="/search" class="btn btn-default btn-lg">
-        <span class="glyphicon glyphicon-search"></span> Search
-    </a>
-</div>
-<!--- End who we are --->
 <!--- How it works ---> 
-<div class="container-fluid  bg-3 text-center">
-    <h1> How WeGive Works </h1>
-    <br>
-        <img src="{% static '/img/howitworks.png' %}" class="img-responsive" 
-    style="display:inline" alt="HowItWorks" width="800" height="800">
-    <br>
-</div>
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2> How WeGive Works </h2>
+                <hr class="star-primary">
+                </hr>
+                <br>
+                <img src="{% static '/img/howitworks.png' %}" class="img-responsive" 
+                style="display:inline" alt="HowItWorks" width="800" height="800">
+                <br>
+            </div>
+        </div>
+    </div>
+</section>
 <!--- End how it works --->
 <!--- Want to give? --->
-<div class="container-fluid bg-4 text-center">
-    <h1>Want to give?</h1>
-    <br>
-    <p>
-        This is the description of WeGive and our mission possibly?
-        More stuff, 
-        even more stuff! CONTENT 
-    </p>
-</div>
+<section class="success" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Want to give?</h2>
+                <hr class="star-light">
+                </hr>
+                <br>
+                <p>
+                Do you want to find charities in your area? Do you already know of
+                a charity you'd like to donate to? 
+                <br>Use our search feature below to 
+                get started today!
+                </p>
+                <br>
+                <a href="/search" class="btn btn-primary btn-lg">
+                <span class="glyphicon glyphicon-search"></span> Search
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 <!--- End Want to give? --->
+<!--- Who we are ---> 
+<section class="portfolio">
+    <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2> Who We Are </h2>
+                    <hr class="star-primary">
+                    </hr>
+                    <p>WeGive aims to connect donors to charities in their area, while providing the easiest platform for giving. 
+                    <br>
+                    WeGive was developed by the UNH Manchester Comp698 team. Want to learn more?
+                    <br> Checkout our Contact Us page!
+                    </p>
+                </div>
+            </div>
+    </div>
+</section>
+<!--- End who we are --->
 <!--- Footer --->
 <footer class="text-center">
     <div class="footer-above">

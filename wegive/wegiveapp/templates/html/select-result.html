@@ -17,11 +17,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="page-scroll"><a href="/sign_up">Sign Up</a>
                 </li>
+                <li class="page-scroll"><a href="/loginat">Login</a>
+                </li>
                 <li class="page-scroll"><a href="/search">Search</a>
                 </li>
                 <li class="page-scroll"><a href="/about">About</a>
-                </li>
-                <li class="page-scroll"><a href="/loginat">Login</a>
                 </li>
                 <li class="page-scroll"><a href="/survey">Survey</a>
                 </li>
@@ -35,9 +35,17 @@
 <!--- End Navbar --->
 
 {% block main %}
-<div class="container-fluid bg-3 text-center">
-    <h1 class="text-center">{{ instance.name }}</h1>
-    <br>
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+            <br>
+            <br>
+            <br>
+                <h2> {{ instance.name }} </h2>
+                <hr class="star-primary">
+                </hr>
+                <br>
     <h4 class="text-muted">{{ instance.address }}</h4>
     <h4 class="text-primary">{{ instance.cause }}</h4>
     <h4 class="text-info">{{ instance.phone }}</h4>
@@ -57,14 +65,17 @@
     <input type="hidden" name="currency_code" value="USD">
 
     <!-- Display the payment button. -->
-    <input type="image" name="submit"
-    src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png"
-    alt="Donate">
+    </br>
+    <button type="submit" name="submit" class="btn btn-success btn-md">
     <img alt="" width="1" height="1"
-    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
-
-</form>
-</div>
+    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
+    Donate
+    </button>
+    </form>
+        </div>
+    </div>
+ </div>
+</section>
 
 <!--- Footer --->
 <footer class="text-center">

@@ -22,11 +22,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="page-scroll"><a href="/sign_up">Sign Up</a>
                 </li>
+                <li class="page-scroll"><a href="/loginat">Login</a>
+                </li>
                 <li class="page-scroll"><a href="/search">Search</a>
                 </li>
                 <li class="page-scroll"><a href="/about">About</a>
-                </li>
-                <li class="page-scroll"><a href="/loginat">Login</a>
                 </li>
                 <li class="page-scroll"><a href="/survey">Survey</a>
                 </li>
@@ -40,37 +40,43 @@
 <!--- End Navbar --->
 
 {% block main %}
-<div class="container-fluid bg-1 text-center">
-<h1 class="text-center"> WeGive Charity Search </h1>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3 text-center">
-        <p>Use the form below to search for charities in your area! </p>
-    </div>
-</div>
+<section id="contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <br>
+                <br>
+                <br>
+                <h2> WeGive Charity Search </h2>
+                <hr class="star-primary">
+                </hr>
+                <p>Use the form below to search for charities in your area! </p>
+            </div>
+        </div>
 <br>
 <div class="col-md-6 col-md-offset-3">
 <form class="contact-form" action="/search/" method="post">
 {% csrf_token %}
     <div class="form-group">
-            <input type="text" class="form-control" id="name" placeholder="Charity Name">
+            <input type="text" class="form-control" name="name" placeholder="Charity Name">
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" id="near_me"> Near Me
+            <input type="checkbox" name="near_me"> Near Me
         </label>
     </div>
     <div class="form-group">
-            <input type="text" class="form-control" id="locationX" placeholder="Location X">
+            <input type="text" class="form-control" name="location_x" placeholder="Location X">
     </div>
     <div class="form-group">
-            <input type="text" class="form-control" id="locationY" placeholder="Location Y">
+            <input type="text" class="form-control" name="location_y" placeholder="Location Y">
     </div>
     <div class="form-group">
-            <input type="text" class="form-control" id="Radius" placeholder="Radius">
+            <input type="text" class="form-control" name="radius" placeholder="Radius">
     </div>
     <div class="form-group">
         <label for="select" class="control-label">Charity Cause</label>
-            <select class="form-control" id="select">
+            <select class="form-control" name="tags_csv">
             <option> Please select a cause </option>
             <option> Religious </option>
             <option> Animals </option>
@@ -85,7 +91,9 @@
 </form>
 </div>
 </div>
+    </div>
 </div>
+</section>
 <!--- Footer --->
 <footer class="text-center">
     <div class="footer-above">
