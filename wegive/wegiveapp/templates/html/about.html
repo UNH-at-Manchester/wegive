@@ -18,11 +18,11 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="page-scroll"><a href="/sign_up">Sign Up</a>
                 </li>
+                <li class="page-scroll"><a href="/loginat">Login</a>
+                </li>
                 <li class="page-scroll"><a href="/search">Search</a>
                 </li>
                 <li class="page-scroll"><a href="/about">About</a>
-                </li>
-                <li class="page-scroll"><a href="/loginat">Login</a>
                 </li>
                 <li class="page-scroll"><a href="/survey">Survey</a>
                 </li>
@@ -36,9 +36,33 @@
 <!--- End Navbar --->
 
 {% block main %}
-<div class="container-fluid bg-3 text-center">
-<h1> Some stuff about us bro </h1>
-</div>
+<section class="success" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+            <br>
+            <br>
+            <br>
+                <h2>About WeGive</h2>
+                <hr class="star-light">
+                </hr>
+                <br>
+                <img src="{% static '/img/unhmanchester.jpg' %}" class="img-responsive" 
+                style="display:inline" alt="HowItWorks" width="800" height="800">
+                <br>
+                <br>
+                <br>
+                <p>WeGive is a website and app designed with donors in mind. 
+                WeGive aims to make donating easy, and connects donors to charities in their area.
+                Our goal is to directly conect everyday philanthropists, investors and entrepreneurs with whorthwhile organizations.
+                We hope to increase charitable giving in all states, especially in New Hampshire. 
+                We have designed a user-friendly platform to make this possible. 
+                WeGive was developed by the UNH Manchester Comp698 team. 
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!--- Footer --->
 <footer class="text-center">

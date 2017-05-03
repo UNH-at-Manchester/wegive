@@ -38,19 +38,22 @@
 <form method="get">
 {% csrf_token %}
 {% load static %}
+<br>
+            <br>
+            <br>
+			<br>
+            <br>
+            <br>
   <body style="margin:0px; padding:0px;" onload="initMap()">
-
-	<h1 class="text-center"> Charity Results </h1>
+	<h1 class="text-center"> Charity Results</h1>
     <div align="center"><select id="locationSelect" style="width: 10%; visibility: hidden"></select></div>
     <div align="center" id="map" style="width: 60%; height: 500px;  margin-left: auto;
   margin-right: auto;"></div>
-
     <script >
       var map;
       var markers = [];
       var infoWindow;
       var locationSelect;
-
         function initMap() {
           var c = {lat: 42.9956, lng: -71.4548};
           map = new google.maps.Map(document.getElementById('map'), {
@@ -60,7 +63,6 @@
             mapTypeControlOptions: {style: google.maps.MapTypeControlStyle.DROPDOWN_MENU}
           });
           infoWindow = new google.maps.InfoWindow();
-
 		  var icon = "{% static '/img/WeGiveOfficalLogo.png' %}"
 		  
 		  {% for charity in res %}
@@ -89,7 +91,6 @@
         }
 		
       }
-
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
@@ -98,7 +99,6 @@
         infoWindow.open(map);
 		  
         }
-
        function searchLocations() {
          var address = document.getElementById("addressInput").value;
          var geocoder = new google.maps.Geocoder();
@@ -110,37 +110,31 @@
            }
          });
        }
-
        function clearLocations() {
          infoWindow.close();
          for (var i = 0; i < markers.length; i++) {
            markers[i].setMap(null);
          }
          markers.length = 0;
-
          locationSelect.innerHTML = "";
          var option = document.createElement("option");
          option.value = "none";
          option.innerHTML = "See all results:";
          locationSelect.appendChild(option);
        }
-
        function downloadUrl(url, callback) {
           var request = window.ActiveXObject ?
               new ActiveXObject('Microsoft.XMLHTTP') :
               new XMLHttpRequest;
-
           request.onreadystatechange = function() {
             if (request.readyState == 4) {
               request.onreadystatechange = doNothing;
               callback(request.responseText, request.status);
             }
           };
-
           request.open('GET', url, true);
           request.send(null);
        }
-
        function createOption(name, num) {
 		var option = document.createElement("option");
 		option.value = num;
@@ -165,7 +159,6 @@
 		newmarker['infowindow'] = new google.maps.InfoWindow({
             content: '{{charity.name}}'
         });
-
 		google.maps.event.addListener(newmarker, 'mouseover', function() {
         this['infowindow'].open(map, this);
 		});
@@ -186,7 +179,6 @@
 		locationSelect.appendChild(option);
 		locationSelect.style.visibility = "visible";
 		}
-
        function doNothing() {}
   </script>
     <script async defer
@@ -194,11 +186,8 @@
     </script>
   </body>
   </form>
-
 <div class="container">
-
 <div class="container-fluid bg-3 text-center">
-    <h1 class="text-center"> Charity Results </h1>
     <br>
     <table class="table table-hover">
         <thead>
@@ -209,7 +198,7 @@
                 <th>Cause</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody align="left">
             {% for charity in res %}
                 <tr>
                     <td><a href="/select/{{ charity.id }}">{{charity.name}}</a></td>
@@ -222,7 +211,6 @@
     </table>
 </div>
 </div>
-
 </body>
 <!--- Footer --->
 <footer class="text-center">

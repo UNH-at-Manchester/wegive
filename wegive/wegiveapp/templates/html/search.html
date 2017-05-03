@@ -37,9 +37,18 @@
     </div>
 </nav>
 {% endblock %}
-<!-- End Navbar -->
 
+<!-- End Navbar -->
 {% block main %}
+
+<!-- this is bad practice! -->
+
+<br>
+            <br>
+            <br>
+			<br>
+            <br>
+            <br>
 <div class="container-fluid bg-1 text-center">
 <h1 class="text-center"> WeGive Charity Search </h1>
 <div class="row">
@@ -51,12 +60,13 @@
 <div class="col-md-6 col-md-offset-3">
 <form class="contact-form" action="/search/" method="post">
 {% csrf_token %}
+
     <div class="form-group">
             <input type="text" name="name" class="form-control" id="name" placeholder="Charity Name">
     </div>
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="near_me" id="near_me"> Near Me
+            <input type="checkbox" id="near_me"> Near Me
         </label>
     </div>
     <div class="form-group">
@@ -123,3 +133,5 @@
 </footer>
 </body>
 {% endblock %}
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help

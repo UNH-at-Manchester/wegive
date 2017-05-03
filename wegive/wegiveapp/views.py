@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import EmailMessage, send_mail
 from django.template import Context
 from django.template.loader import get_template
+from django.contrib.auth.models import User
 # Create your views here.
 
 def match_charity(name="", tags=[], location_x=0.0, location_y=0.0, radius=0.0):
@@ -99,7 +100,7 @@ def loginat(request):
 def logoutat(request):
     logout(request)
     form = forms.LoginForm()
-    return render(request, "html/homepage.html", {"form": form}) 
+    return render(request, "html/loginat.html", {"form": form}) 
 
 def sign_up(request):
     if request.method == "POST":
@@ -109,11 +110,14 @@ def sign_up(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         address = request.POST.get("address")
-        user = User.objects.create_user(usename=usename, password=password)
+        user = User.objects.create_user(username=username, password=password)
+        form = forms.SignUpForm()
+        user.save()
+        return render(request, "html/homepage.html",{"form": form} )
     else:
         form = forms.SignUpForm()
         #render the template that has the sign up form        
-        return render(request, "html/homepage.html",{"form": form} )
+        return render(request, "html/signup.html",{"form": form} )
 
 
 @login_required
@@ -232,10 +236,10 @@ def survey(request):
         question_one = request.POST.get('username')
         question_two = request.POST.get('password')
         question_three = request.POST.get('name')
-    else:
+    else:    
         form = forms.SurveyForm()        
         return render(request, "html/survey.html",{"form": form} )
-        
+
 def about(request):
     return render(request, "html/about.html", {})
     
